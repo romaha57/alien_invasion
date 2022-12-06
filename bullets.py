@@ -63,5 +63,3 @@ class Bullet(Sprite):
         if len(aliens) == 0:
             bullets.empty()
             create_army(screen, aliens)
-
-

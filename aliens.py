@@ -95,8 +95,9 @@ def check_alien_go_border(stats, screen, spaceship, aliens, bullets, score):
     """Функция для проверки пересечения нижней границы экрана и пришельца,
     если пересекается, то отнимается 1 жизнь"""
 
-    screen_rect =screen.get_rect()
+    screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             spaceship_death(stats, screen, spaceship, aliens, bullets, score)
             break
+

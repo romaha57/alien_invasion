@@ -12,7 +12,8 @@ class SpaceShip(Sprite):
         self.screen = screen
         self.raw_image = pygame.image.load('images/spaceship.png')
         self.image = pygame.transform.scale(self.raw_image,
-                                            (settings.SPACESHIP_SIZE_HEIGHT, settings.SPACESHIP_SIZE_WIDTH))
+                                            (settings.SPACESHIP_SIZE_HEIGHT,
+                                             settings.SPACESHIP_SIZE_WIDTH))
 
         # получаем объект rect для корабля
         self.rect = self.image.get_rect()
