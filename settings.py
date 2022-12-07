@@ -1,4 +1,5 @@
 """Настройки игры :
+FPS - частота кадров
 SCREEN_WIDTH - ширина экрана игры
 SCREEN_HEIGHT - высота экрана игры
 TITLE_GAME - название игры
@@ -16,6 +17,7 @@ ALIEN_SPEED - скорость пришельца
 TEXT_COLOR - цвет текста
 """
 
+FPS = 60
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 700
 TITLE_GAME = 'Вторжение пришельцев'

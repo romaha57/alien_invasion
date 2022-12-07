@@ -2,15 +2,18 @@ import sys
 import time
 
 import pygame.image
-from pygame.sprite import Sprite
+from pygame.sprite import Sprite, Group
 
 import settings
+from stats import Stats
+from scores import Score
+from spaceship import SpaceShip
 
 
 class Alien(Sprite):
     """Класс для пришельца"""
 
-    def __init__(self, screen):
+    def __init__(self, screen: pygame.Surface) -> None:
         """Создаем пришельца, подгружаем картинку
          и задаем ему координаты для отображения на экране"""
 
@@ -31,12 +34,14 @@ class Alien(Sprite):
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
-    def draw_alien(self):
+    def draw_alien(self) -> None:
         """Отрисовываем пришельца на экране"""
         self.screen.blit(self.image, self.rect)
 
-    def update(self, stats, screen, spaceship, aliens, bullets, score):
+    def update(self, stats: Stats, screen: pygame.Surface,
+               spaceship: SpaceShip, aliens: Group, bullets: Group, score: Score) -> None:
         """Перемещение пришельца"""
+
         self.y += settings.ALIEN_SPEED
         self.rect.y = self.y
 
@@ -48,7 +53,7 @@ class Alien(Sprite):
         check_alien_go_border(stats, screen, spaceship, aliens, bullets, score)
 
 
-def create_army(screen, aliens):
+def create_army(screen: pygame.Surface, aliens: Group) -> None:
     """Функция для рассчета и создания армии пришельцев"""
 
     alien = Alien(screen)
@@ -72,7 +77,8 @@ def create_army(screen, aliens):
             aliens.add(alien)
 
 
-def spaceship_death(stats, screen, spaceship, aliens, bullets, score):
+def spaceship_death(stats: Stats, screen: pygame.Surface, spaceship: SpaceShip,
+                    aliens: Group, bullets: Group, score: Score) -> None:
     """Функция для потери корабля"""
 
     if stats.health > 0:
@@ -84,14 +90,15 @@ def spaceship_death(stats, screen, spaceship, aliens, bullets, score):
         bullets.empty()
         create_army(screen, aliens)
         spaceship.create_spaceship()
-        time.sleep(2)
+        time.sleep(1)
     else:
         # при health=0 игра закрывается
         stats.run_game = False
         sys.exit()
 
 
-def check_alien_go_border(stats, screen, spaceship, aliens, bullets, score):
+def check_alien_go_border(stats: Stats, screen: pygame.Surface, spaceship: SpaceShip,
+                          aliens: Group, bullets: Group, score: Score) -> None:
     """Функция для проверки пересечения нижней границы экрана и пришельца,
     если пересекается, то отнимается 1 жизнь"""
 

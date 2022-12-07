@@ -1,15 +1,18 @@
 import pygame
-from pygame.sprite import Sprite
+from pygame.sprite import Sprite, Group
 
 import settings
 from aliens import create_army
 from scores import check_high_score
+from spaceship import SpaceShip
+from stats import Stats
+from scores import Score
 
 
 class Bullet(Sprite):
     """Класс для инициализации пули и методы по отображению и перемещению ее"""
 
-    def __init__(self, screen, spaceship):
+    def __init__(self, screen: pygame.Surface, spaceship: SpaceShip) -> None:
         """Иницилизация пули и назначение ей координат для отображения"""
 
         super().__init__()
@@ -27,18 +30,19 @@ class Bullet(Sprite):
         # преобразовываем для того, чтобы можно было указать float значения для плавности
         self.y = float(self.rect.y)
 
-    def move_bullet(self):
+    def move_bullet(self) -> None:
         """Перемещение пули вверх"""
 
         self.y -= settings.BULLET_SPEED
         self.rect.y = self.y
 
-    def draw_bullet(self):
+    def draw_bullet(self) -> None:
         """Отрисовка пули на экране"""
 
         pygame.draw.rect(self.screen, self.color, self.rect)
 
-    def update(self, screen, bullets, aliens, stats, score):
+    def update(self, screen: pygame.Surface, bullets: Group, aliens: Group,
+               stats: Stats, score: Score) -> None:
         """Удаление пули, если она вылетела за экран"""
 
         for bullet in bullets.copy():
@@ -54,7 +58,7 @@ class Bullet(Sprite):
                 stats.score += 10 * len(collision)
 
             # проверяем текущие количество очков и рекорд и отображаем на экране
-            check_high_score(stats, score)
+            check_high_score(stats)
             score.image_high_score()
             score.image_score()
             score.image_health()

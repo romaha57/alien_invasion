@@ -1,11 +1,13 @@
 import sys
 
 import pygame
+from pygame.sprite import Group
 
 from bullets import Bullet
+from spaceship import SpaceShip
 
 
-def _check_events(screen, spaceship, bullets):
+def _check_events(screen: pygame.Surface, spaceship: SpaceShip, bullets: Group) -> None:
     """Функция для обработки событий (клавиши left, right, up, down, space)"""
 
     for event in pygame.event.get():
@@ -36,3 +38,4 @@ def _check_events(screen, spaceship, bullets):
                 spaceship.move_up = False
             elif event.key == pygame.K_DOWN:
                 spaceship.move_down = False
+
