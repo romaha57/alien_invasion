@@ -20,7 +20,7 @@ class Alien(Sprite):
         super().__init__()
 
         self.screen = screen
-        self.raw_image = pygame.image.load('images/alien.png')
+        self.raw_image = pygame.image.load('images/alien.png').convert_alpha()
         self.image = pygame.transform.scale(self.raw_image,
                                             (settings.ALIEN_HEIGHT, settings.ALIEN_WIDTH))
 
@@ -107,4 +107,3 @@ def check_alien_go_border(stats: Stats, screen: pygame.Surface, spaceship: Space
         if alien.rect.bottom >= screen_rect.bottom:
             spaceship_death(stats, screen, spaceship, aliens, bullets, score)
             break
-

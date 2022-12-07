@@ -10,7 +10,7 @@ class SpaceShip(Sprite):
     def __init__(self, screen: pygame.Surface) -> None:
         super().__init__()
         self.screen = screen
-        self.raw_image = pygame.image.load('images/spaceship.png')
+        self.raw_image = pygame.image.load('images/spaceship.png').convert_alpha()
         self.image = pygame.transform.scale(self.raw_image,
                                             (settings.SPACESHIP_SIZE_HEIGHT,
                                              settings.SPACESHIP_SIZE_WIDTH))

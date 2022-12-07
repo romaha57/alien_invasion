@@ -28,7 +28,7 @@ class Score:
     def image_score(self) -> None:
         """Преобразовывает текст счета в графическое изображение"""
 
-        self.score_img = self.font.render(str(self.stats.score),
+        self.score_img = self.font.render('Счет: ' + str(self.stats.score),
                                           True, self.text_color, (settings.BG_COLOR))
         self.score_rect = self.score_img.get_rect()
 
@@ -37,9 +37,9 @@ class Score:
         self.score_rect.top = 20
 
     def image_high_score(self) -> None:
-        """Преобразовыввает рекорд счета в графическое изображение"""
+        """Преобразовывает рекорд счета в графическое изображение"""
 
-        self.high_score_img = self.font.render(str(self.stats.high_score),
+        self.high_score_img = self.font.render('Текущий рекорд: ' + str(self.stats.high_score),
                                                True, self.text_color, (settings.BG_COLOR))
         self.high_score_rect = self.high_score_img.get_rect()
 
